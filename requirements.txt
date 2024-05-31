@@ -1,4 +1,0 @@
-pandas
-pydantic
-pytz
-requests

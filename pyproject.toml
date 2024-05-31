@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airtable_scraper"
+version = "0.0.1"
+authors = [
+  { name="Kang Chen", email="kangchen.work@gmail.com" },
+]
+description = "Public airtable web scraper tool"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+keywords = ["airtable", "scraper", "scraping", "web scraper"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pandas",
+    "pydantic",
+    "pytz",
+    "requests",
+]
+
+[project.urls]
+Homepage = "https://github.com/kchenTTP/airtable-scraper"
+Issues = "https://github.com/kchenTTP/airtable-scraper/issues"
