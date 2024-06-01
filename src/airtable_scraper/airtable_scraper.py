@@ -28,7 +28,6 @@ class AirtableScraper:
         self.__s = requests.Session()
         self._headers = {
             "Accept": "*/*",
-            "Accept-Encoding": "gzip, deflate, br",
             "Accept-Language": "en-ZA,en;q=0.9",
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
@@ -47,10 +46,10 @@ class AirtableScraper:
         self._data = self._get(self._new_url, self._headers).json()
         if self._data.get("msg") == "SUCCESS":
             self.__table = self._data.get("data").get("table")
-            self.status = "success"
+            self.__status = "success"
         else:
             self.__table = {}
-            self.status = "failed"
+            self.__status = "failed"
 
     def __enter__(self) -> Self:
         return self
@@ -184,7 +183,7 @@ class AirtableScraper:
     @property
     def status(self) -> str:
         """Success or fail of scraping (http) request."""
-        return self.status
+        return self.__status
 
     @property
     def table_id(self) -> Any | None:
@@ -227,6 +226,7 @@ class AirtableScraper:
         Returns:
             str | Any: Api endpoint. None if table not found in http response
         """
+        print(self.__page)
         url_with_params = re.search(r"urlWithParams:\s*\"(.*?)\"", self.__page).group(1)
         if not url_with_params:
             logger.error(f"Could not parse urlWithParams. Failed to scrape table: {self._url}")
@@ -359,7 +359,6 @@ class AirtableScraper:
         auth_json = self._get_auth_data()
         return {
             "Accept": "*/*",
-            "Accept-Encoding": "gzip, deflate, br",
             "Accept-Language": "en-ZA,en;q=0.9",
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
