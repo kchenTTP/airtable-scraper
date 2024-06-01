@@ -226,7 +226,6 @@ class AirtableScraper:
         Returns:
             str | Any: Api endpoint. None if table not found in http response
         """
-        print(self.__page)
         url_with_params = re.search(r"urlWithParams:\s*\"(.*?)\"", self.__page).group(1)
         if not url_with_params:
             logger.error(f"Could not parse urlWithParams. Failed to scrape table: {self._url}")
